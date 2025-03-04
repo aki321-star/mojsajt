@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mačka i Pismo</title>
+    <style>
+body{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    margin: 0;
+}
+.container {
+    position: relative;
+    text-align: center;
+}
+.envelope {
+    width: 500px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.letter {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    width: 180px;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid #ccc;
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+    opacity: 0;
+}
+.show-letter {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 1;
+}
+.heart {
+position: absolute;
+color: rgba(255, 0, 0, 0.3); /* Crvena boja sa prozirnošću */
+font-size: 20px;
+animation: fall 4s linear infinite;
+user-select: none; /* Da se ne može selektovati */
+}
+
+@keyframes fall {
+0% {
+transform: translateY(-100px);
+opacity: 1;
+}
+100% {
+transform: translateY(100vh);
+opacity: 0;
+}
+}
+
+
+
+</style>
+</head>
+<body>
+<div class="container">
+<img src="garfild2.jpg.jpg" alt="Mačka drži kovertu" class="envelope" onclick="toggleLetter()">
+<div class="letter" id="letter">Srećna ti godina dana najlepšeg perioda u tvom životu ❤️</div>
+</div>
+
+<script>
+function toggleLetter() {
+    document.getElementById("letter").classList.toggle("show-letter");
+}
+function createHeart() {
+const heart = document.createElement("div");
+heart.innerHTML = "&#10084;"; // HTML kod za srce
+heart.classList.add("heart");
+
+// Nasumična pozicija i veličina
+heart.style.left = Math.random() * 100 + "vw";
+heart.style.fontSize = Math.random() * 30 + 10 + "px"; // Veličina od 10px do 40px
+
+document.body.appendChild(heart);
+
+// Uklanjanje srca posle završene animacije
+setTimeout(() => {
+heart.remove();
+}, 4000);
+}
+
+// Stvaranje srca na svakih 500ms
+setInterval(createHeart, 500);
+
+
+</script>
+</body>
+</html>
+
